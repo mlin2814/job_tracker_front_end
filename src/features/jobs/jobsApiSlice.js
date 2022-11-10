@@ -32,11 +32,48 @@ export const jobsApiSlice = apiSlice.injectEndpoints({
                 } else return [{ type: 'Job', id: 'LIST' }]
             }
         }),
+        addNewJob: builder.mutation({
+            query: initialJob => ({
+                url: '/jobs',
+                method: 'POST',
+                body: {
+                    ...initialJob,
+                }
+            }),
+            invalidatesTags: [
+                { type: 'Job', id: "LIST" }
+            ]
+        }),
+        updateJob: builder.mutation({
+            query: initialJob => ({
+                url: '/jobs',
+                method: 'PATCH',
+                body: {
+                    ...initialJob,
+                }
+            }),
+            invalidatesTags: (result, error, arg) => [
+                { type: 'Job', id: arg.id }
+            ]
+        }),
+        deleteJob: builder.mutation({
+            query: ({ id }) => ({
+                url: `/jobs`,
+                method: 'DELETE',
+                body: { id }
+            }),
+            invalidatesTags: (result, error, arg) => [
+                { type: 'Job', id: arg.id }
+            ]
+        }),
     }),
 })
 
 export const {
     useGetJobsQuery,
+    useAddNewNoteMutation,
+    useUpdateNoteMutation,
+    useDeleteNoteMutation,
 } = jobsApiSlice
 
 // returns the query result object
