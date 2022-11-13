@@ -8,7 +8,11 @@ const JobsList = () => {
         isSuccess,
         isError,
         error
-    } = useGetJobsQuery()
+    } = useGetJobsQuery(undefined, {
+        pollingInterval: 15000,
+        refetchOnFocus: true,
+        refetchOnMountOrArgChange: true
+    })
 
     let content
 

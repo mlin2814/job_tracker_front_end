@@ -1,14 +1,14 @@
-import { useGetUsersQuery } from "./usersApiSlice";
-import User from './User'
+import { useGetContactsQuery } from "./contactsApiSlice";
+import Contact from './Contact'
 
-const UsersList = () => {
+const ContactsList = () => {
     const {
-        data: users,
+        data: contacts,
         isLoading,
         isSuccess,
         isError,
         error
-    } = useGetUsersQuery(undefined, {
+    } = useGetContactsQuery(undefined, {
         pollingInterval: 60000,
         refetchOnFocus: true,
         refetchOnMountOrArgChange: true
@@ -23,17 +23,20 @@ const UsersList = () => {
     }
 
     if (isSuccess) {
-        const { ids } = users
+        const { ids } = contacts
 
         const tableContent = ids?.length
-            ? ids.map(userId => <User key={userId} userId={userId} />)
+            ? ids.map(contactId => <Contact key={contactId} userId={contactId} />)
             : null
 
         content = (
-            <table className="table table--users">
+            <table className="table table--contacts">
                 <thead className="table__thead">
                     <tr>
-                        <th scope="col" className="table__th user__username">Username</th>
+                        <th scope="col" className="table__th contact__username">Username</th>
+                        <th scope="col" className="table__th contact__email">Email</th>
+                        <th scope="col" className="table__th contact__phone">Phone</th>
+                        <th scope="col" className="table__th contact__linkedin">LinkedIn</th>
                         {/* <th scope="col" className="table__th user__jobs">Jobs</th> */}
                         <th scope="col" className="table__th user__edit">Edit</th>
                     </tr>
@@ -48,4 +51,4 @@ const UsersList = () => {
     return content
 }
 
-export default UsersList
+export default ContactsList

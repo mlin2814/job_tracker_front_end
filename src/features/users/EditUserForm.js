@@ -29,7 +29,7 @@ const EditUserForm = ({ user }) => {
     const [validUsername, setValidUsername] = useState(false)
     const [password, setPassword] = useState('')
     const [validPassword, setValidPassword] = useState(false)
-    const [skills, setSkills] = useState(user.skills)
+    const [roles, setRoles] = useState(user.roles)
     // const [active, setActive] = useState(user.active)
 
     useEffect(() => {
@@ -45,7 +45,7 @@ const EditUserForm = ({ user }) => {
         if (isSuccess || isDelSuccess) {
             setUsername('')
             setPassword('')
-            setSkills([])
+            setRoles([])
             navigate('/dash/users')
         }
 
@@ -66,9 +66,9 @@ const EditUserForm = ({ user }) => {
 
     const onSaveUserClicked = async (e) => {
         if (password) {
-            await updateUser({ id: user.id, username, password, skills})
+            await updateUser({ id: user.id, username, password, roles})
         } else {
-            await updateUser({ id: user.id, username, skills })
+            await updateUser({ id: user.id, username, roles })
         }
     }
 
@@ -76,27 +76,27 @@ const EditUserForm = ({ user }) => {
         await deleteUser({ id: user.id })
     }
 
-    const options = Object.values(ROLES).map(skill => {
+    const options = Object.values(ROLES).map(role => {
         return (
             <option
-                key={skill}
-                value={skill}
+                key={role}
+                value={role}
 
-            > {skill}</option >
+            > {role}</option >
         )
     })
 
     let canSave
     if (password) {
-        canSave = [skills.length, validUsername, validPassword].every(Boolean) && !isLoading
+        canSave = [roles.length, validUsername, validPassword].every(Boolean) && !isLoading
     } else {
-        canSave = [skills.length, validUsername].every(Boolean) && !isLoading
+        canSave = [roles.length, validUsername].every(Boolean) && !isLoading
     }
 
     const errClass = (isError || isDelError) ? "errmsg" : "offscreen"
     const validUserClass = !validUsername ? 'form__input--incomplete' : ''
     const validPwdClass = password && !validPassword ? 'form__input--incomplete' : ''
-    const validSkillsClass = !Boolean(skills.length) ? 'form__input--incomplete' : ''
+    const validRolesClass = !Boolean(roles.length) ? 'form__input--incomplete' : ''
 
     const errContent = (error?.data?.message || delerror?.data?.message) ?? ''
 
@@ -166,10 +166,10 @@ const EditUserForm = ({ user }) => {
                 <select
                     id="roles"
                     name="roles"
-                    className={`form__select ${validSkillsClass}`}
-                    multiple={true}
-                    size="3"
-                    value={skill}
+                    className={`form__select ${validRolesClass}`}
+                    multiple={false}
+                    size="2"
+                    value={roles}
                     onChange={onRolesChanged}
                 >
                     {options}
