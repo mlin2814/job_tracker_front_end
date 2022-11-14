@@ -70,9 +70,9 @@ export const jobsApiSlice = apiSlice.injectEndpoints({
 
 export const {
     useGetJobsQuery,
-    useAddNewNoteMutation,
-    useUpdateNoteMutation,
-    useDeleteNoteMutation,
+    useAddNewJobMutation,
+    useUpdateJobMutation,
+    useDeleteJobMutation,
 } = jobsApiSlice
 
 // returns the query result object

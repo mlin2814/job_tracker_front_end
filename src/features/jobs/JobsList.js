@@ -33,7 +33,7 @@ const JobsList = () => {
             <table className="table table--jobs">
                 <thead className="table__thead">
                     <tr>
-                        <th scope="col" className="table__th job__status">Username</th>
+                        {/* <th scope="col" className="table__th job__status">Username</th> */}
                         <th scope="col" className="table__th job__title">Title</th>
                         <th scope="col" className="table__th job__company">Company</th>
                         <th scope="col" className="table__th job__description">Description</th>
