@@ -9,7 +9,7 @@ const ContactsList = () => {
         isError,
         error
     } = useGetContactsQuery(undefined, {
-        pollingInterval: 60000,
+        pollingInterval: 15000,
         refetchOnFocus: true,
         refetchOnMountOrArgChange: true
     })
@@ -19,6 +19,7 @@ const ContactsList = () => {
     if (isLoading) content = <p>Loading...</p>
 
     if (isError) {
+        console.log("Problem Error")
         content = <p className="errmsg">{error?.data?.message}</p>
     }
 
@@ -26,7 +27,7 @@ const ContactsList = () => {
         const { ids } = contacts
 
         const tableContent = ids?.length
-            ? ids.map(contactId => <Contact key={contactId} userId={contactId} />)
+            ? ids.map(contactId => <Contact key={contactId} contactId={contactId} />)
             : null
 
         content = (
@@ -47,8 +48,13 @@ const ContactsList = () => {
             </table>
         )
     }
+    else {
+        console.log("Problem")
+    }
 
     return content
 }
 
 export default ContactsList
+
+

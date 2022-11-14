@@ -20,16 +20,6 @@ const Job = ({ jobId }) => {
         // This whole document is more for the jobs page with it skills array since users here do not have array for jobs
         return (
             <tr className="table__row job">
-                {/* <td className="table__cell note__title">{job.title}</td>
-                <td className={`table__cell ${cellStatus}`}>{jobSkillString}</td>
-                <td className={`table__cell ${cellStatus}`}>
-                    <button
-                        className="icon-button table__button"
-                        onClick={handleEdit}
-                    >
-                        <FontAwesomeIcon icon={faPenToSquare} />
-                    </button>
-                </td> */}
                 <td className="table__cell job__username">{job.username}</td>
                 <td className="table__cell job__title">{job.title}</td>
                 <td className="table__cell job__company">{job.company}</td>

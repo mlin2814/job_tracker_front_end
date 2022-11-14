@@ -44,6 +44,9 @@ const UsersList = () => {
             </table>
         )
     }
+    else {
+        console.log("Problem")
+    }
 
     return content
 }

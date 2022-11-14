@@ -35,7 +35,7 @@ const EditJobForm = ({ job, users }) => {
     const [location, setLocation] = useState(job.location)
     const [deadline, setDeadline] = useState(job.deadline)
     const [skills, setSkills] = useState(job.skills)
-    const [userId, setUserId] = useState(job.user)
+    // const [userId, setUserId] = useState(job.user)
 
     useEffect(() => {
 
@@ -64,13 +64,13 @@ const EditJobForm = ({ job, users }) => {
         )
         setSkills(values)
     }
-    const onUserIdChanged = e => setUserId(e.target.value)
+    // const onUserIdChanged = e => setUserId(e.target.value)
 
-    const canSave = [title, company, description, location, deadline, skills.length, userId].every(Boolean) && !isLoading
+    const canSave = [title, company, description, location, deadline, skills.length].every(Boolean) && !isLoading
 
     const onSaveJobClicked = async (e) => {
         if (canSave) {
-            await updateJob({ id: job.id, user: userId, title, company, description, location, deadline, skills })
+            await updateJob({ id: job.id, title, company, description, location, deadline, skills })
         }
     }
 
@@ -91,7 +91,12 @@ const EditJobForm = ({ job, users }) => {
 
     const errClass = (isError || isDelError) ? "errmsg" : "offscreen"
     const validTitleClass = !title ? "form__input--incomplete" : ''
-    const validTextClass = !text ? "form__input--incomplete" : ''
+    const validCompanyClass = !company ? "form__input--incomplete" : ''
+    const validDescriptionClass = !description ? "form__input--incomplete" : ''
+    const validLocationClass = !location ? "form__input--incomplete" : ''
+    const validDeadlineClass = !deadline ? "form__input--incomplete" : ''
+    const validSkillsClass = !Boolean(skills.length) ? "form__input--incomplete" : ''
+    // const validTextClass = !text ? "form__input--incomplete" : ''
 
     const errContent = (error?.data?.message || delerror?.data?.message) ?? ''
 
@@ -126,7 +131,7 @@ const EditJobForm = ({ job, users }) => {
                     className={`form__input ${validTitleClass}`}
                     id="job-title"
                     name="title"
-                    type="text"
+                    // type="text"
                     autoComplete="off"
                     value={title}
                     onChange={onTitleChanged}
