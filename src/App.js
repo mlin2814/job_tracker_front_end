@@ -14,6 +14,7 @@ import NewJobForm from "./features/jobs/NewJob";
 import EditContact from "./features/contacts/EditContact";
 import NewContactForm from "./features/contacts/NewContactForm";
 import Prefetch from "./features/auth/Prefetch";
+import PersistLogin from './features/auth/PersistLogin';
 
 function App() {
   return (
@@ -22,24 +23,27 @@ function App() {
         <Route index element={<Public />} />
         <Route path="login" element={<Login />} />
 
-        <Route element={<Prefetch />}>
+        <Route element={<PersistLogin />}>
 
-          <Route path="dash" element={<DashLayout />}>
-            <Route index element={<Welcome />} />
-            <Route path="users">
-              <Route index element={<UsersList />} />
-              <Route path=":id" element={<EditUser />} />
-              <Route path="new" element={<NewUserForm />} />
-            </Route>
-            <Route path="jobs">
-              <Route index element={<JobsList />} />
-              <Route path=":id" element={<EditJob />} />
-              <Route path="new" element={<NewJobForm />} />
-            </Route>
-            <Route path="contacts">
-              <Route index element={<ContactsList />} />
-              <Route path=":id" element={<EditContact />} />
-              <Route path="new" element={<NewContactForm />} />
+          <Route element={<Prefetch />}>
+
+            <Route path="dash" element={<DashLayout />}>
+              <Route index element={<Welcome />} />
+              <Route path="users">
+                <Route index element={<UsersList />} />
+                <Route path=":id" element={<EditUser />} />
+                <Route path="new" element={<NewUserForm />} />
+              </Route>
+              <Route path="jobs">
+                <Route index element={<JobsList />} />
+                <Route path=":id" element={<EditJob />} />
+                <Route path="new" element={<NewJobForm />} />
+              </Route>
+              <Route path="contacts">
+                <Route index element={<ContactsList />} />
+                <Route path=":id" element={<EditContact />} />
+                <Route path="new" element={<NewContactForm />} />
+              </Route>
             </Route>
           </Route>
         </Route>

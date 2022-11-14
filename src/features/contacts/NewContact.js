@@ -1,15 +1,18 @@
 import { useSelector } from 'react-redux'
 import { selectAllUsers } from '../users/usersApiSlice'
-import NewJobForm from './NewJobForm'
+import NewContactForm from './NewContactForm'
 
-const NewJob = () => {
+const NewContact = () => {
     const users = useSelector(selectAllUsers)
 
-    const content = users ? <NewJobForm users={users} /> : <p>Loading...</p>
+    if (!users?.length) return <p>Not Currently Available</p>
+
+    const content = <NewContactForm users={users} />
+    // const content = users ? <NewContactForm users={users} /> : <p>Loading...</p>
 
     return content
 }
-export default NewJob
+export default NewContact
 
 // const NewContact = () => {
 //     return (
